@@ -11,6 +11,7 @@ def number_clicked(num):
     equation.set(expression)
 def equal():
     global expression
+    expression = equation.get()
     try:
         total = str(eval(expression))
         equation.set(total)
