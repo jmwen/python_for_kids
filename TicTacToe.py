@@ -16,23 +16,23 @@ def winnercheck(player):
             messagebox.showinfo('showinfo',string)
             game = False
 
-def mark(b,n):
+def mark(button,number):
     global turn, state, game
-    if b['text'] == ' ' and game == True:
+    if button['text'] == ' ' and game == True:
         if turn % 2 == 1:
-            b['text'] = 'X'
+            button['text'] = 'X'
             turn += 1
-            state[n-1] = 'X'
+            state[number-1] = 'X'
             winnercheck('X')
         elif turn % 2 == 0:
-            b['text'] = 'O'
+            button['text'] = 'O'
             turn += 1
-            state[n-1] = 'O'
+            state[number-1] = 'O'
             winnercheck('O')
     else:
         if game == False:
             messagebox.showinfo('showinfo','Game over! Start a new game.')
-        elif b['text'] != ' ':
+        elif button['text'] != ' ':
             messagebox.showinfo('showinfo','This box is occupied!')
     if turn > 8 and game == True:
         messagebox.showinfo('showinfo','The match was a Draw')
@@ -58,14 +58,14 @@ S.grid(row=2,column=1)
 SE = Button(Game, text=' ', width=4, height=2, font = font,command = lambda: mark(SE,9))
 SE.grid(row=2,column=2)
 
-boxes = [NW, N, NE, W, Center, E, SW, S, SE]
+buttons = [NW, N, NE, W, Center, E, SW, S, SE]
 
 def new_game():
-    global state,game,turn,boxes
+    global state,game,turn,buttons
     turn = 0
     state = ['','','','','','','','','']
     game = True
-    for b in boxes:
+    for b in buttons:
         b['text'] = ' '
 
 Button(Game, text='New Game', command=new_game).grid(row=3, column=1)
